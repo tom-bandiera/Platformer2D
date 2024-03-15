@@ -1133,9 +1133,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 673580439}
   groundCheck: {fileID: 1853465383}
+  groundDecay: 0.256
   groundSpeed: 3
   jumpSpeed: 5
-  drag: 0.9
+  acceleration: 1
   IsGrounded: 0
   groundMask:
     serializedVersion: 2
@@ -1174,7 +1175,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: c78e398b2ed465548a9590ba403e1980, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

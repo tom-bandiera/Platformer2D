@@ -8,10 +8,12 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D body;
     public BoxCollider2D groundCheck;
-
+    [Range(0f, 1f)]
+    [SerializeField] private float groundDecay;
     [SerializeField] private float groundSpeed;
     [SerializeField] private float jumpSpeed;
-    [SerializeField] private float drag;
+    [SerializeField] private float acceleration;
+    
     [SerializeField] private bool IsGrounded;
     [SerializeField] private LayerMask groundMask;
 
@@ -27,6 +29,7 @@ public class Player : MonoBehaviour
     {
         GetInput();
         HandlePlayerMovement();
+        HandleJump();
     }
 
     void FixedUpdate()
@@ -39,13 +42,16 @@ public class Player : MonoBehaviour
     {
         if (Mathf.Abs(xInput) > 0)
         {
+            float increment = xInput * acceleration;
+            float newSpeed = Mathf.Clamp(body.velocity.x + increment, -groundSpeed, groundSpeed);
             body.velocity = new Vector2(xInput * groundSpeed, body.velocity.y);
+
+            // Face direction we are moving on X
+            float direction = Mathf.Sign(xInput);
+            transform.localScale = new Vector3(direction, 1, 1);
         }
 
-        if (Mathf.Abs(yInput) > 0 && IsGrounded)
-        {
-            body.velocity = new Vector2(body.velocity.x, yInput * jumpSpeed);
-        }
+
     }
 
     private void GetInput()
@@ -61,9 +67,17 @@ public class Player : MonoBehaviour
 
     private void ApplyFriction()
     {
-        if (IsGrounded && xInput == 0)
+        if (IsGrounded &&  xInput == 0 && body.velocity.y <= 0)
         {
-            body.velocity *= drag;
+            body.velocity *= groundDecay;
+        }
+    }
+
+    private void HandleJump()
+    {
+        if (Input.GetButtonDown("Jump") && IsGrounded)
+        {
+            body.velocity = new Vector2(body.velocity.x, jumpSpeed);
         }
     }
 }
