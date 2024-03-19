@@ -55,7 +55,7 @@ public class PoisonSlime : MonoBehaviour
 
             moveSpeed = -moveSpeed;
             
-            transform.localScale = new Vector3(-1, 1, 1);
+            // transform.localScale = new Vector3(-1, 1, 1);
 
         } else if (WalkDirection == WalkableDirection.Right)
         {
@@ -63,7 +63,7 @@ public class PoisonSlime : MonoBehaviour
             raycastWallDirection = transform.right;
             raycastPlayerDirection = new Vector2(1, 0);
 
-            transform.localScale = new Vector3(1, 1, 1);
+            FlipScale();
         }
     }
 
@@ -89,7 +89,7 @@ public class PoisonSlime : MonoBehaviour
         // If the ray hits no ground or If the ray hits the wall, flip direction
         if (checkGround.collider == null || checkWall.collider != null)
         {
-            FlipDirection();
+            Flip();
         }
 
         if (checkPlayer.collider != null)
@@ -109,12 +109,13 @@ public class PoisonSlime : MonoBehaviour
             // Move the enemy
             movement = new Vector2(moveSpeed, body.velocity.y);
             isWalking = true;
+            isAttacking = false;
         }
 
         body.velocity = movement;
     }
 
-    private void FlipDirection()
+    private void Flip()
     {
         if (WalkDirection == WalkableDirection.Left)
         {
@@ -127,7 +128,7 @@ public class PoisonSlime : MonoBehaviour
             raycastWallDirection = transform.right;
             raycastPlayerDirection = new Vector2(1, 0);
 
-            transform.localScale = new Vector3(-1, 1, 1);
+            // transform.localScale = new Vector3(-1, 1, 1);
         }
         else
         {
@@ -140,10 +141,21 @@ public class PoisonSlime : MonoBehaviour
             raycastWallDirection = -transform.right;
             raycastPlayerDirection = new Vector2(-1, 0);
 
-            transform.localScale = new Vector3(1, 1, 1);
+            // transform.localScale = new Vector3(1, 1, 1);
         }
-        // Rotate Ennemy to 180°
-        transform.Rotate(0f, 180f, 0f);
+
+        FlipScale();
+    }
+
+    private void FlipScale()
+    {
+        Vector3 scale = transform.localScale;
+
+        // Flip the scale on the x-axis
+        scale.x *= -1;
+
+        // Apply the new scale to the object
+        transform.localScale = scale;
     }
 
     public bool IsWalking()
