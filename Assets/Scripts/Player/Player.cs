@@ -54,8 +54,6 @@ public class Player : MonoBehaviour
             float direction = Mathf.Sign(xInput);
             transform.localScale = new Vector3(direction, 1, 1);
         }
-
-
     }
 
     private void GetInput()
