@@ -17,17 +17,16 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpSpeed;
     [SerializeField] private float acceleration;
     
-    [SerializeField] private bool IsGrounded;
     [SerializeField] private LayerMask groundMask;
 
     private float xInput;
     private float yInput;
-    private bool isWalking;
 
-    void Start()
-    {
-        Debug.Log("Start");
-    }
+    private bool isWalking;
+    private bool isGrounded;
+    private bool isJumping;
+    private bool isFalling;
+    private Vector3 previousPosition;
 
     private void Update()
     {
@@ -38,6 +37,9 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        isFalling = transform.position.y < previousPosition.y;
+        previousPosition = transform.position;
+
         CheckGround();
         ApplyFriction();
     }
@@ -66,12 +68,19 @@ public class Player : MonoBehaviour
 
     private void CheckGround()
     {
-        IsGrounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundMask).Length > 0;
+        if (isFalling == false) return;
+
+        isGrounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundMask).Length > 0;
+
+        if (isGrounded)
+        {
+            isJumping = false;
+        }
     }
 
     private void ApplyFriction()
     {
-        if (IsGrounded &&  xInput == 0 && body.velocity.y <= 0)
+        if (isGrounded && xInput == 0 && body.velocity.y <= 0)
         {
             body.velocity *= groundDecay;
         }
@@ -79,15 +88,34 @@ public class Player : MonoBehaviour
 
     private void HandleJump()
     {
-        if (Input.GetButtonDown("Jump") && IsGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             jumpSound.Play();
             body.velocity = new Vector2(body.velocity.x, jumpSpeed);
+
+            isJumping = true;
+            isFalling = false;
+            isGrounded = false;
         }
     }
 
     public bool IsWalking()
     {
         return isWalking;
+    }
+
+    public bool IsGrounded()
+    {
+        return isGrounded;
+    }
+
+    public bool IsJumping()
+    {
+        return isJumping;
+    }
+
+    public bool IsFalling()
+    {
+        return isFalling;
     }
 }

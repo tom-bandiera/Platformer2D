@@ -832,6 +832,18 @@ PrefabInstance:
       propertyPath: groundSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7709475974069269919, guid: 58649bd3579a8674988ddb84a106edf0, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709475974069269919, guid: 58649bd3579a8674988ddb84a106edf0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -456163130, guid: cf4ca8acc65457f40b520562a132887c, type: 3}
+    - target: {fileID: 7709475974069269919, guid: 58649bd3579a8674988ddb84a106edf0, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7900974202932724546, guid: 58649bd3579a8674988ddb84a106edf0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -933,7 +945,7 @@ MonoBehaviour:
     m_Bits: 64
   isWalking: 1
   isAttacking: 0
-  WalkDirection: 1
+  WalkDirection: 0
 --- !u!1 &773248609
 GameObject:
   m_ObjectHideFlags: 0
