@@ -23,7 +23,8 @@ public class PoisonSlime : MonoBehaviour
 
     private float raycastObstacleDistance = 1f;
 
-    public bool IsWalking = true;
+    public bool isWalking = true;
+    public bool isAttacking = false;
 
     [SerializeField] 
     private enum WalkableDirection
@@ -93,7 +94,7 @@ public class PoisonSlime : MonoBehaviour
 
         if (checkPlayer.collider != null)
         {
-            IsWalking = false;
+            isWalking = false;
             movement = new Vector2(0, body.velocity.y);
         }
 
@@ -101,12 +102,13 @@ public class PoisonSlime : MonoBehaviour
         {
             // Stop the enemy
             movement = new Vector2(0, body.velocity.y);
-            IsWalking = false;
+            isWalking = false;
+            isAttacking = true;
         } else
         {
             // Move the enemy
             movement = new Vector2(moveSpeed, body.velocity.y);
-            IsWalking = true;
+            isWalking = true;
         }
 
         body.velocity = movement;
@@ -142,5 +144,15 @@ public class PoisonSlime : MonoBehaviour
         }
         // Rotate Ennemy to 180°
         transform.Rotate(0f, 180f, 0f);
+    }
+
+    public bool IsWalking()
+    {
+        return isWalking;
+    }
+
+    public bool IsAttacking()
+    {
+        return isAttacking;
     }
 }

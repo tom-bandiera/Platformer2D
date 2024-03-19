@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class PoisonSlimeAnimation : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Animator animator;
+    private const string IS_WALKING = "IsWalking";
+    private const string IS_ATTACKING = "IsAttacking";
+    [SerializeField] PoisonSlime poisonSlime;
+
+    private void Awake()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        animator.SetBool(IS_WALKING, poisonSlime.IsWalking());
+        animator.SetBool(IS_ATTACKING, poisonSlime.IsAttacking());
     }
 }

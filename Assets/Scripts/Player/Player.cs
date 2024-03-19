@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public Rigidbody2D body;
     public BoxCollider2D groundCheck;
 
+    [SerializeField] AudioSource jumpSound;
+
     [Range(0f, 1f)]
     [SerializeField] private float groundDecay;
     [SerializeField] private float groundSpeed;
@@ -79,6 +81,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && IsGrounded)
         {
+            jumpSound.Play();
             body.velocity = new Vector2(body.velocity.x, jumpSpeed);
         }
     }
