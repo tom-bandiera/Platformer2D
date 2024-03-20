@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D body;
     public BoxCollider2D groundCheck;
-    public Animator animator;
+
     [SerializeField] AudioSource jumpSound;
 
     [Range(0f, 1f)]
