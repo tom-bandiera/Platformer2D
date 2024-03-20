@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D body;
     public BoxCollider2D groundCheck;
-
+    public Animator animator;
     [SerializeField] AudioSource jumpSound;
 
     [Range(0f, 1f)]
@@ -28,6 +28,9 @@ public class Player : MonoBehaviour
     private bool isFalling;
     private Vector3 previousPosition;
 
+    public float xVelocity;
+    public float yVelocity;
+
     private void Update()
     {
         GetInput();
@@ -37,8 +40,11 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        isFalling = transform.position.y < previousPosition.y;
-        previousPosition = transform.position;
+        // isFalling = transform.position.y < previousPosition.y;
+        // previousPosition = transform.position;
+
+        xVelocity = body.velocity.x;
+        yVelocity = body.velocity.y;
 
         CheckGround();
         ApplyFriction();
@@ -68,7 +74,7 @@ public class Player : MonoBehaviour
 
     private void CheckGround()
     {
-        if (isFalling == false) return;
+        // if (isFalling == false) return;
 
         isGrounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundMask).Length > 0;
 
@@ -111,11 +117,11 @@ public class Player : MonoBehaviour
 
     public bool IsJumping()
     {
-        return isJumping;
+        return yVelocity > 0.3;
     }
 
     public bool IsFalling()
     {
-        return isFalling;
+        return yVelocity < -0.3;
     }
 }

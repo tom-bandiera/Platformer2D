@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 5474366540310813927}
   - component: {fileID: 2784374679355797962}
   m_Layer: 0
-  m_Name: HeroSlime
+  m_Name: HeroSlimeOld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
