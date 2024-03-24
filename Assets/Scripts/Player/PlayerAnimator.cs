@@ -10,7 +10,7 @@ public class PlayerAnimator : MonoBehaviour
     private const string IS_JUMPING = "IsJumping";
     private const string IS_FALLING = "IsFalling";
 
-    [SerializeField] Player player;
+/*    [SerializeField] Player player;*/
 
     private void Awake()
     {
@@ -19,9 +19,9 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Update()
     {
-        animator.SetBool(IS_WALKING, player.IsWalking());
+/*        animator.SetBool(IS_WALKING, player.IsWalking());
         animator.SetBool(IS_GROUNDED, player.IsGrounded());
         animator.SetBool(IS_JUMPING, player.IsJumping());
-        animator.SetBool(IS_FALLING, player.IsFalling());
+        animator.SetBool(IS_FALLING, player.IsFalling());*/
     }
 }
