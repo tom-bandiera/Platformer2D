@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class IdleState : State
 {
+    [SerializeField] private AnimationClip animationClip;
+
     public override void Enter()
     {
-        animator.Play("Idle");
+        animator.Play(animationClip.name);
     }
 
     public override void Do()
     {
-        if(!input.isGrounded || input.xInput != 0)
+        if(!input.isGrounded)
         {
             isComplete = true;
         }

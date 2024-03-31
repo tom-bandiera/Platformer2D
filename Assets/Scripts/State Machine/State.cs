@@ -11,7 +11,7 @@ public abstract class State : MonoBehaviour
 
     protected Rigidbody2D body;
     protected Animator animator;
-    protected PlayerMovement input;
+    protected PlayerInput input;
 
     public virtual void Enter()
     {
@@ -33,7 +33,13 @@ public abstract class State : MonoBehaviour
 
     }
 
-    public void Setup(Rigidbody2D _body, Animator _animator, PlayerMovement _input)
+    public void Initialize()
+    {
+        isComplete = false;
+        startTime = Time.time;
+    }
+
+    public void Setup(Rigidbody2D _body, Animator _animator, PlayerInput _input)
     {
         animator = _animator;
         body = _body;

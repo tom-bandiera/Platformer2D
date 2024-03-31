@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class WalkState : State
 {
+    [SerializeField] private AnimationClip animationClip;
+
+
     public override void Enter()
     {
-        animator.Play("Walk");
+        animator.Play(animationClip.name);
     }
 
     public override void Do()
     {
-        if (input.xInput == 0)
+        animator.speed = Helpers.Map(input.groundSpeed, 0, 1, 0, 1.6f, true);
+
+        if (!input.isGrounded)
         {
             isComplete = true;
         }

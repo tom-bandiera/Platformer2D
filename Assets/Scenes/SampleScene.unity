@@ -663,6 +663,10 @@ PrefabInstance:
       propertyPath: walkState
       value: 
       objectReference: {fileID: 905083963}
+    - target: {fileID: 6226766029236528676, guid: 58649bd3579a8674988ddb84a106edf0, type: 3}
+      propertyPath: acceleration
+      value: 0.29
+      objectReference: {fileID: 0}
     - target: {fileID: 7900974202932724546, guid: 58649bd3579a8674988ddb84a106edf0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -759,6 +763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22d193970c38fc40a635411c317835a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationClip: {fileID: 7400000, guid: cb2242345542ea8478f2c74eccab1ece, type: 2}
 --- !u!1 &1006140889
 GameObject:
   m_ObjectHideFlags: 0
@@ -2885,6 +2890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c7eb2220da69e43931f3d76c7b4f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationClip: {fileID: 7400000, guid: df6378c1d367a284a86989045f55cb80, type: 2}
 --- !u!95 &1253276940 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 2679003710107556656, guid: 58649bd3579a8674988ddb84a106edf0, type: 3}
@@ -3062,6 +3068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpSpeed: 5
+  animationClip: {fileID: 7400000, guid: 45015f7c2bcab4f4c94b5b9b72b901f9, type: 2}
   jumpSound: {fileID: 238141011}
 --- !u!1 &1865050317
 GameObject:
