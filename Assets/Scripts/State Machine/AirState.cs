@@ -22,7 +22,7 @@ public class AirState : State
         animator.Play(animationClip.name, 0, time);
         // body.velocity = new Vector2(body.velocity.x, jumpSpeed);
 
-        if (input.isGrounded)
+        if (groundSensor.grounded)
         {
             isComplete = true;
         }

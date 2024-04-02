@@ -5,6 +5,7 @@ using UnityEngine;
 public class WalkState : State
 {
     [SerializeField] private AnimationClip animationClip;
+    public PlayerInput input;
 
 
     public override void Enter()
@@ -16,7 +17,7 @@ public class WalkState : State
     {
         animator.speed = Helpers.Map(input.groundSpeed, 0, 1, 0, 1.6f, true);
 
-        if (!input.isGrounded)
+        if (!groundSensor.grounded)
         {
             isComplete = true;
         }

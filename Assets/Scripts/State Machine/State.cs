@@ -9,9 +9,12 @@ public abstract class State : MonoBehaviour
     protected float startTime;
     public float time => Time.time - startTime;
 
-    protected Rigidbody2D body;
-    protected Animator animator;
-    protected PlayerInput input;
+    protected Core core;
+
+    protected Rigidbody2D body => core.body;
+    protected Animator animator => core.animator;
+    protected GroundSensor groundSensor => core.groundSensor;
+    /*protected PlayerInput input => core.input;*/
 
     public virtual void Enter()
     {
@@ -39,10 +42,8 @@ public abstract class State : MonoBehaviour
         startTime = Time.time;
     }
 
-    public void Setup(Rigidbody2D _body, Animator _animator, PlayerInput _input)
+    public void SetCore(Core _core)
     {
-        animator = _animator;
-        body = _body;
-        input = _input;
+        core = _core; 
     }
 }
