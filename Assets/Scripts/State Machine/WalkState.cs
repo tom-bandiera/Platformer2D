@@ -6,7 +6,7 @@ public class WalkState : State
 {
     [SerializeField] private AnimationClip animationClip;
     public PlayerInput input;
-
+    public float maxSpeed;
 
     public override void Enter()
     {
@@ -15,7 +15,7 @@ public class WalkState : State
 
     public override void Do()
     {
-        animator.speed = Helpers.Map(input.groundSpeed, 0, 1, 0, 1.6f, true);
+        animator.speed = Helpers.Map(maxSpeed, 0, 1, 0, 1.6f, true);
 
         if (!groundSensor.grounded)
         {

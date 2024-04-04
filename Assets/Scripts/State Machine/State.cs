@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class State : MonoBehaviour
@@ -14,7 +15,28 @@ public abstract class State : MonoBehaviour
     protected Rigidbody2D body => core.body;
     protected Animator animator => core.animator;
     protected GroundSensor groundSensor => core.groundSensor;
-    /*protected PlayerInput input => core.input;*/
+
+    public StateMachine machine;
+    public StateMachine parent;
+    public State state => machine.state;
+
+    // Wrapping the StateMachine Set() function for shortcut
+    protected void Set(State newState, bool forceReset = false)
+    {
+        machine.Set(newState, forceReset);
+    }
+
+    public void SetCore(Core _core)
+    {
+        machine = new StateMachine();
+        core = _core;
+    }
+    public void Initialize(StateMachine _parent)
+    {
+        parent = _parent;
+        isComplete = false;
+        startTime = Time.time;
+    }
 
     public virtual void Enter()
     {
@@ -36,14 +58,16 @@ public abstract class State : MonoBehaviour
 
     }
 
-    public void Initialize()
+
+    public void DoBranch()
     {
-        isComplete = false;
-        startTime = Time.time;
+        Do();
+        state?.DoBranch();
     }
 
-    public void SetCore(Core _core)
+    public void FixedDoBranch()
     {
-        core = _core; 
+        FixedDo();
+        state?.FixedDoBranch();
     }
 }

@@ -11,7 +11,7 @@ public class StateMachine
         if (state != newState || forceReset) {
             state?.Exit();
             state = newState;
-            state.Initialize();
+            state.Initialize(this);
             state.Enter();
         }
     }

@@ -11,14 +11,11 @@ public class PlayerInput : Core
     
     [SerializeField] private float acceleration;
     
-
-
-
     public AirState airState;
     public IdleState idleState;
     public WalkState walkState;
 
-    public float groundSpeed;
+
 
     public float xInput { get; private set; }
     public float yInput { get; private set; }
@@ -65,7 +62,7 @@ public class PlayerInput : Core
         if (Mathf.Abs(xInput) > 0)
         {
             float increment = xInput * acceleration;
-            float newSpeed = groundSensor.grounded ? Mathf.Clamp(body.velocity.x + increment, -groundSpeed, groundSpeed) : groundSpeed * xInput;
+            float newSpeed = groundSensor.grounded ? Mathf.Clamp(body.velocity.x + increment, -walkState.maxSpeed, walkState.maxSpeed) : walkState.maxSpeed * xInput;
      
             body.velocity = new Vector2(newSpeed, body.velocity.y);
             

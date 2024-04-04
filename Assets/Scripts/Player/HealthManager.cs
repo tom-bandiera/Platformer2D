@@ -6,17 +6,20 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
-    public int health = 3;
+    public static int health = 3;
     public Image[] hearts;
 
     [SerializeField] private Sprite fullHeart;
     [SerializeField] private Sprite emptyHeart;
 
+    private void Awake()
+    {
+        health = 3;
+    }
 
     // Update is called once per frame
     void Update()
     {
-
         foreach (var heart in hearts)
         {
             heart.sprite = emptyHeart;
