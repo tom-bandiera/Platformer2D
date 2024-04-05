@@ -7,8 +7,6 @@ public class PatrolState : State
     public IdleState idleState;
     public NavigateState navigateState;
 
-
-
     public override void Enter()
     {
         GoToNextDestination();

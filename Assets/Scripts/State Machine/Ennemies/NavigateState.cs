@@ -52,4 +52,9 @@ public class NavigateState : State
 
         directionX = Mathf.Sign(randomNumber);
     }
+
+    public override void Exit()
+    {
+
+    }
 }

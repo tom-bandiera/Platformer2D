@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.XR;
@@ -95,13 +96,10 @@ public class PlayerInput : Core
 
     private void HandleJump()
     {
-
         if (Input.GetButtonDown("Jump") && groundSensor.grounded)
         {
             
             body.velocity = new Vector2(body.velocity.x, airState.jumpSpeed);
-
-/*            groundSensor.grounded = false;*/
         }
     }
 }

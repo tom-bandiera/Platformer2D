@@ -5,7 +5,7 @@ using UnityEngine;
 public class WalkState : State
 {
     [SerializeField] private AnimationClip animationClip;
-    public PlayerInput input;
+     
     public float maxSpeed;
 
     public override void Enter()
