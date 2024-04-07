@@ -9,6 +9,7 @@ public class PlayerCollision : MonoBehaviour
     public Animator animator;
     // The duration to ignore collisions (in seconds)
     [SerializeField] private float invicibilityDuration = 3f;
+    [SerializeField] private AudioSource hurtSound;
 
     private bool invincible = false;
 
@@ -28,6 +29,7 @@ public class PlayerCollision : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies") && invincible == false) {
             healthManager.takeDamage(1);
+            hurtSound.Play();
             invincible = true;
             animator.SetLayerWeight(1, 1);
             StartCoroutine(IgnoreEnemiesCollisions());
