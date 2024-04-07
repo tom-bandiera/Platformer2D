@@ -8,12 +8,14 @@ public class HurtState : State
 {
     [SerializeField] private AnimationClip animationClip;
     [SerializeField] private PoisonSlime poisonSlime;
-
+    [SerializeField] private AudioSource stompSound;
     public override void Enter()
     {
         body.velocity = new Vector2 (0, body.velocity.y);
 
+        
         StartCoroutine(GetHurtAnimation());
+
     }
 
     public override void Do()
@@ -24,6 +26,7 @@ public class HurtState : State
     IEnumerator GetHurtAnimation()
     {
         animator.Play(animationClip.name);
+        stompSound.Play();
 
         // Wait for the specified duration
         yield return new WaitForSeconds(1);

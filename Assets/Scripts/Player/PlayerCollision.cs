@@ -40,7 +40,7 @@ public class PlayerCollision : MonoBehaviour
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"));
         
         // Wait for the specified duration
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
 
         animator.SetLayerWeight(1, 0);
         // Revert the collision ignoring

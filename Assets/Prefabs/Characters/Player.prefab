@@ -172,12 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthManager: {fileID: 5791152626718326031}
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  enemiesMask:
-    serializedVersion: 2
-    m_Bits: 0
+  animator: {fileID: 2679003710107556656}
   invicibilityDuration: 3
 --- !u!1 &6020450742496291110
 GameObject:
@@ -224,7 +219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationClip: {fileID: 7400000, guid: cb2242345542ea8478f2c74eccab1ece, type: 2}
-  input: {fileID: 6226766029236528676}
   maxSpeed: 5
 --- !u!1 &7698817452191962627
 GameObject:
@@ -360,7 +354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ad48abb73390a488ca68c6f3a4f0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
   hearts:
   - {fileID: 0}
   - {fileID: 0}
