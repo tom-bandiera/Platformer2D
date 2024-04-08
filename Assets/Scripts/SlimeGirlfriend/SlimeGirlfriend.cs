@@ -9,6 +9,8 @@ public class SlimeGirlfriend : Core
     [SerializeField] private LoveState loveState;
 
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private AudioSource levelMusic;
+    [SerializeField] private AudioSource levelFinishedMusic;
 
     private bool reachedByPlayer = false;
 
@@ -42,6 +44,8 @@ public class SlimeGirlfriend : Core
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             reachedByPlayer = true;
+            levelMusic.Stop();
+            levelFinishedMusic.Play();
             StartCoroutine(ShowLevelFinishedScreen());
         }
     }
