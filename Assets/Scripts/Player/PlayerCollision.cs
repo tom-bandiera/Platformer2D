@@ -33,6 +33,13 @@ public class PlayerCollision : MonoBehaviour
             invincible = true;
             animator.SetLayerWeight(1, 1);
             StartCoroutine(IgnoreEnemiesCollisions());
+        } 
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Friends"))
+        {
+            if (collision.gameObject.tag == "SlimeGirlfriend")
+            {
+                Debug.Log("Level finished");
+            }
         }
     }
 

@@ -11,6 +11,9 @@ public class HealthManager : MonoBehaviour
 
     [SerializeField] private Sprite fullHeart;
     [SerializeField] private Sprite emptyHeart;
+    [SerializeField] private GameManager gameManager;
+
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -33,5 +36,11 @@ public class HealthManager : MonoBehaviour
     public void takeDamage(int damage)
     {
         health -= damage;
+
+        if (health <= 0 && isDead == false)
+        {
+            isDead = true;
+            gameManager.GameOver();
+        }
     }
 }
