@@ -43,4 +43,10 @@ public class HealthManager : MonoBehaviour
             gameManager.GameOver();
         }
     }
+
+    public void kill()
+    {
+        health = 0;
+        gameManager.GameOver();
+    }
 }

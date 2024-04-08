@@ -7,9 +7,16 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject gameoverScreen;
     [SerializeField] private GameObject levelFinishedScreen;
+    [SerializeField] private AudioSource gameOverSound;
+    [SerializeField] private AudioSource levelMusic;
     public void GameOver()
     {
+
+        levelMusic.Stop();
+        gameOverSound.Play();
+        
         gameoverScreen.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void LevelFinished()
@@ -31,6 +38,7 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
     }
 
     public void Quit()

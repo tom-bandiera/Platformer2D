@@ -38,8 +38,17 @@ public class PlayerCollision : MonoBehaviour
         {
             if (collision.gameObject.tag == "SlimeGirlfriend")
             {
-                Debug.Log("Level finished");
+                // Should freeze player
             }
+        }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Water"))
+        {
+            healthManager.kill();
         }
     }
 
